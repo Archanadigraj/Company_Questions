@@ -1,0 +1,50 @@
+package amity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class AmitySoftware {
+
+    static boolean isPrime(int n) {
+        if (n <= 1) return false;
+        if (n % 2 == 0) return n == 2;
+        if (n % 3 == 0) return n == 3;
+        for (int i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) return false;
+        }
+        return true;
+    }
+
+    static void permute(char[] ch, boolean[] used, StringBuilder sb, Set<Integer> primes) {
+        if (sb.length() == ch.length) {
+            if (sb.charAt(0) != '0') {
+                int x = Integer.parseInt(sb.toString());
+                if (isPrime(x)) primes.add(x);
+            }
+            return;
+        }
+        for (int i = 0; i < ch.length; i++) {
+            if (!used[i]) {
+                sb.append(ch[i]);
+                used[i] = true;
+                permute(ch, used, sb, primes);
+                sb.deleteCharAt(sb.length() - 1);
+                used[i] = false;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        String s = "1723";
+        int L = 3;
+        Set<Integer> uniquePrimes = new HashSet<>();
+
+        for (int i = 0; i <= s.length() - L; i++) {
+            String substring = s.substring(i, i + L);
+            permute(substring.toCharArray(), new boolean[L], new StringBuilder(), uniquePrimes);
+        }
+
+        System.out.println("Unique primes: " + uniquePrimes);
+        System.out.println("Total count: " + uniquePrimes.size());
+    }
+}
