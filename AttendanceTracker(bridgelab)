@@ -1,0 +1,30 @@
+package Bridzelab;
+
+public class AttendanceTracker {
+    public static void main(String[] args) {
+        String[] learners = {"l1", "l2", "l3", "l4"};
+        String[] timeSlots = {"09:00-17:00", "08:45-17:30", "09:00-17:35", "09:15-17:30"};
+
+        int maxMinutes = 0;
+        String maxLearner = "";
+
+        for (int i = 0; i < timeSlots.length; i++) {
+            String[] times = timeSlots[i].split("-");
+            int inMinutes = toMinutes(times[0]);
+            int outMinutes = toMinutes(times[1]);
+            int duration = outMinutes - inMinutes;
+
+            if (duration > maxMinutes) {
+                maxMinutes = duration;
+                maxLearner = learners[i];
+            }
+        }
+
+        System.out.printf("Learner with max duration: %s (%d hour)%n", maxLearner, maxMinutes/60);
+    }
+
+    private static int toMinutes(String time) {
+        String[] parts = time.split(":");
+        return Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+    }
+}
