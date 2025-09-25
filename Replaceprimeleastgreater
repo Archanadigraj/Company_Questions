@@ -1,0 +1,33 @@
+package amity;
+
+public class Amity {
+	public static void main(String[] args) {
+		 int a[]={8,58,71,18,31,32,63};
+	Replaceprimeleastgreater(a, 1, 5);
+	for(int num:a) {
+		System.out.print(num+" ");//8 71 -1 31 -1 32 63 
+	}
+}
+ public static int [] Replaceprimeleastgreater(int[]a, int start,int end) {
+	 for(int i=start;i<end;i++){
+		 if(a[start]<(a[start+1])&&isprime(a[start+1])) 
+			 a[start]=a[start+1]; 
+		 else {
+			 a[start]=-1;
+		 }
+		 start++;
+	 }
+	return a;
+	 
+ }
+private static boolean isprime(int n) {
+	if (n <= 1) return false;
+    if (n % 2 == 0) return n == 2;
+    if (n % 3 == 0) return n == 3;
+    for (int i = 5; i * i <= n; i += 6) {
+        if (n % i == 0 || n % (i + 2) == 0) return false;
+    }
+    return true;
+}
+}
+
