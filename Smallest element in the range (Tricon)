@@ -1,0 +1,45 @@
+public class Tricon {
+	public static void main(String[] args) {
+		smallInteger(1, 20, 15);
+		
+		sm(11,22, 10);
+		
+	}
+static void smallInteger(int l,int r,int k) {
+		String s="";int count=0;
+		for(int i=l;i<=r;i++) {
+			s=s+i;
+			if(s.length()>=k)
+			{
+				System.out.println(i);
+				break;
+			}
+		} 
+------------------------------------------------------------------------------------------------------------------------------------
+static void sm(long l,long r,long k) {
+		int count=0; long i;
+		for (i = l; i <= r; i++) {
+	        if (i < 10) {
+	            count++;
+	            if (count == k) {
+	                System.out.println(i);
+	                return;
+	            }
+	        } else {
+	            long m = i;  
+	            while (m > 0) {   
+	                long n = m % 10;
+	                count++;
+	                if (count == k) {
+	                    System.out.println(i); 
+	                    return;
+	                }
+	                m = m / 10; 
+	            }
+	        }
+	}
+	}
+	}
+	
+
+
